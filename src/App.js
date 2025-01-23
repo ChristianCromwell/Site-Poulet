@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from "react";
-import accueil from'./accueil';
+import { Link } from "react-router-dom"; // Assurez-vous d'avoir installé react-router-dom
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,22 +10,24 @@ function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <link to ="/" className="text-2xl font-bold"></link>
-            
-              MonLogo
+          <div className="flex-shrink-0 text-2xl font-bold">
+            <Link to="/">MonLogo</Link>
           </div>
 
           {/* Navigation pour écrans larges */}
           <nav className="hidden md:flex space-x-8">
-            <link to ="/" className="hover:text-gray-200"></link>
+            <Link to="/" className="hover:text-gray-200">
               Accueil
-            <link to ="/" className="hover:text-gray-200"></link>
+            </Link>
+            <Link to="/about" className="hover:text-gray-200">
               À propos
-            <link to ="/" className="hover:text-gray-200"></link>
+            </Link>
+            <Link to="/services" className="hover:text-gray-200">
               Services
-            <link to ="/" className="hover:text-gray-200"></link>
+            </Link>
+            <Link to="/contact" className="hover:text-gray-200">
               Contact
+            </Link>
           </nav>
 
           {/* Bouton pour le menu mobile */}
@@ -67,24 +69,25 @@ function Header() {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-green-700">
           <nav className="space-y-2 py-4 px-4">
-            <a href="#" className="block text-white hover:bg-green-500 rounded px-3 py-2">
+            <Link to="/" className="block text-white hover:bg-green-500 rounded px-3 py-2">
               Accueil
-            </a>
-            <a href="#" className="block text-white hover:bg-green-500 rounded px-3 py-2">
+            </Link>
+            <Link to="/about" className="block text-white hover:bg-green-500 rounded px-3 py-2">
               À propos
-            </a>
-            <a href="#" className="block text-white hover:bg-green-500 rounded px-3 py-2">
+            </Link>
+            <Link to="/services" className="block text-white hover:bg-green-500 rounded px-3 py-2">
               Services
-            </a>
-            <a href="#" className="block text-white hover:bg-green-500 rounded px-3 py-2">
+            </Link>
+            <Link to="/contact" className="block text-white hover:bg-green-500 rounded px-3 py-2">
               Contact
-            </a>
+            </Link>
           </nav>
         </div>
       )}
     </header>
   );
 }
+
 function App() {
   return (
     <div ><Header/> <accueil/> </div>
