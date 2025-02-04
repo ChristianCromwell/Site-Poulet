@@ -1,6 +1,10 @@
 import './App.css';
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Assurez-vous d'avoir installé react-router-dom
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Homepage from './components/Homepage.jsx'; 
+import Propos from './components/Propos';
+import Contact from './components/Contact';
+import Service from './components/Service';
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -9,17 +13,14 @@ function Header() {
     <header className="bg-green-600 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <div className="flex-shrink-0 text-2xl font-bold">
             <Link to="/">MonLogo</Link>
           </div>
-
-          {/* Navigation pour écrans larges */}
           <nav className="hidden md:flex space-x-8">
             <Link to="/" className="hover:text-gray-200">
               Accueil
             </Link>
-            <Link to="/about" className="hover:text-gray-200">
+            <Link to="/propos" className="hover:text-gray-200">
               À propos
             </Link>
             <Link to="/services" className="hover:text-gray-200">
@@ -29,8 +30,6 @@ function Header() {
               Contact
             </Link>
           </nav>
-
-          {/* Bouton pour le menu mobile */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -64,15 +63,13 @@ function Header() {
           </div>
         </div>
       </div>
-
-      {/* Menu mobile */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-green-700">
           <nav className="space-y-2 py-4 px-4">
-            <Link to="/" className="block text-white hover:bg-green-500 rounded px-3 py-2">
+            <Link to="/Homepage" className="block text-white hover:bg-green-500 rounded px-3 py-2">
               Accueil
             </Link>
-            <Link to="/about" className="block text-white hover:bg-green-500 rounded px-3 py-2">
+            <Link to="/propos" className="block text-white hover:bg-green-500 rounded px-3 py-2">
               À propos
             </Link>
             <Link to="/services" className="block text-white hover:bg-green-500 rounded px-3 py-2">
@@ -90,8 +87,17 @@ function Header() {
 
 function App() {
   return (
-    <div ><Header/> <accueil/> </div>
-    
+    <Router>
+      <Header />
+      <main>
+        <Router>
+          <Route path="/Homepage" element={<Homepage />} />
+          <Route path="/propos" element={<Propos />} />
+          <Route path="/services" element={<Service />} />
+          <Route path="/contact" element={<Contact />} />
+        </Router>
+      </main>
+    </Router>
   );
 }
 
